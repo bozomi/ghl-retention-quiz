@@ -5,9 +5,13 @@ export async function POST(request: Request) {
         const body = await request.json();
         const { decision, reason } = body;
 
-        // TODO: Connect to GoHighLevel Webhook here
-        // const GHL_WEBHOOK_URL = process.env.GHL_WEBHOOK_URL;
-        // await fetch(GHL_WEBHOOK_URL, { ... });
+        const GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/B5uf5RpsGwhItwi1pcfp/webhook-trigger/9257e232-4e0c-4766-a38d-29c75ba3a5f2';
+
+        await fetch(GHL_WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ decision, reason, timestamp: new Date().toISOString() })
+        });
 
         console.log('Received submission:', { decision, reason });
 
