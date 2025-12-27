@@ -2,11 +2,15 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSearchParams } from 'next/navigation';
 import StepDecision from '@/components/StepDecision';
 import StepReason from '@/components/StepReason';
 import { CheckCircle2 } from 'lucide-react';
 
 export default function QuizWrapper() {
+    const searchParams = useSearchParams();
+    const email = searchParams.get('email') || undefined;
+
     const [step, setStep] = useState(1);
     const [loading, setLoading] = useState(false);
     const [completed, setCompleted] = useState(false);
@@ -19,7 +23,7 @@ export default function QuizWrapper() {
             try {
                 await fetch('/api/submit', {
                     method: 'POST',
-                    body: JSON.stringify({ decision: 'stay' }),
+                    body: JSON.stringify({ decision: 'stay', email }),
                     headers: { 'Content-Type': 'application/json' }
                 });
                 setCompleted(true);
@@ -38,7 +42,7 @@ export default function QuizWrapper() {
         try {
             await fetch('/api/submit', {
                 method: 'POST',
-                body: JSON.stringify({ decision: 'leave', reason }),
+                body: JSON.stringify({ decision: 'leave', reason, email }),
                 headers: { 'Content-Type': 'application/json' }
             });
             setCompleted(true);
