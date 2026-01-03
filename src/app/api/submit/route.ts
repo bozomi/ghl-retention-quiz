@@ -6,7 +6,7 @@ export async function POST(request: Request) {
         const body = await request.json();
         const { decision, reason, email } = body;
 
-        const GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/B5uf5RpsGwhItwi1pcfp/webhook-trigger/9257e232-4e0c-4766-a38d-29c75ba3a5f2';
+        const GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/B5uf5RpsGwhItwi1pcfp/webhook-trigger/a31a6c70-3334-4ed7-85fe-c16ad11d9dc0';
 
         await fetch(GHL_WEBHOOK_URL, {
             method: 'POST',
