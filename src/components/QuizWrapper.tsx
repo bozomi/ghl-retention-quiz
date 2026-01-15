@@ -21,9 +21,13 @@ export default function QuizWrapper() {
         if (choice === 'stay') {
             setLoading(true);
             try {
+                // Send exact string for GHL Custom Field
                 await fetch('/api/submit', {
                     method: 'POST',
-                    body: JSON.stringify({ decision: 'stay', email }),
+                    body: JSON.stringify({
+                        decision: 'Yes, Activate Monthly Plan',
+                        email
+                    }),
                     headers: { 'Content-Type': 'application/json' }
                 });
                 setCompleted(true);
@@ -40,9 +44,14 @@ export default function QuizWrapper() {
     const handleReasonSubmit = async (reason: string) => {
         setLoading(true);
         try {
+            // Send exact string for GHL Custom Field
             await fetch('/api/submit', {
                 method: 'POST',
-                body: JSON.stringify({ decision: 'leave', reason, email }),
+                body: JSON.stringify({
+                    decision: 'No, Cancel Subscription',
+                    reason,
+                    email
+                }),
                 headers: { 'Content-Type': 'application/json' }
             });
             setCompleted(true);
