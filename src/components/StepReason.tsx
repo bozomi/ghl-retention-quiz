@@ -10,11 +10,8 @@ interface StepReasonProps {
 }
 
 const REASONS = [
-    "Price is too high",
-    "Not satisfied with results",
-    "Lack of technical support",
-    "Using another platform",
-    "Temporarily pausing business"
+    "Business Change",
+    "Not satisfied with results"
 ];
 
 export default function StepReason({ onSubmit, onBack, loading }: StepReasonProps) {
